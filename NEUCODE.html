@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title>东北大学测温验证平台</title>
+  </head>
+  <body>
+    <div class="app" style="position:absolute; left:0; top:0; width:100%">
+      <div class="part1">
+        <h2 class="card-title">东北大学通行验证</h2>
+        <div class="circle" >
+          <svg t="1630897745474" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3430" width="210" height="210"><path d="M806.848 511.424q0-15.424-10.272-25.728l-258.848-258.848q-10.272-10.272-25.728-10.272t-25.728 10.272l-258.848 258.848q-10.272 10.272-10.272 25.728t10.272 25.728l52 52q10.272 10.272 25.728 10.272t25.728-10.272l108-108 0 286.848q0 14.848 10.848 25.728t25.728 10.848l73.152 0q14.848 0 25.728-10.848t10.848-25.728l0-286.848 108 108q10.848 10.848 25.728 10.848t25.728-10.848l52-52q10.272-10.272 10.272-25.728zM950.848 512q0 119.424-58.848 220.288t-159.712 159.712-220.288 58.848-220.288-58.848-159.712-159.712-58.848-220.288 58.848-220.288 159.712-159.712 220.288-58.848 220.288 58.848 159.712 159.712 58.848 220.288z" p-id="3431" fill="#eefa2e"></path></svg>
+        </div>
+      <div class="card-time">
+        <div class="timeprefix">时间：</div>
+        <div style="display:inline-block; width:193.15px; height:31.2px">
+          <div id="dateTime"></div>
+        </div>
+      </div>
+      </div>
+      <div class="part2">
+        <ul  style="color:white; padding:1em">
+        <li class="list">
+          <div style="min-width: 2em;" class="list-item">学工号</div>：
+          <div id="studentID" style="display:inline">1801714</div>
+        </li>
+        <li class="list">
+          <div style="" class="list-item">姓名</div>：
+          <div id="studentName" style="display:inline">王皓</div>
+        </li>
+        <li class="list">
+          <div style="min-width: 4em;" class="list-item">验证位置</div>：
+          <div id="studentSet" style="display:inline">浑南校区东门</div>
+        </li>
+        <li class="list">
+          <div style="min-width: 4em;" class="list-item">进出状态</div>：
+          <div style="display:inline">进入</div>
+        </li>
+          </ul>
+      </div>
+    </div>
+
+    <style type="text/css">
+     .part1{
+       text-align:center;
+       color:#eefa2e;
+       background-color:#fff;
+       height:330px;
+     }
+     .part2{
+       background-color:#eefa2e;
+     }
+     .card-title{
+       font-size: 2rem;
+       font-weight:500;
+     }
+     .card-time{
+       font-size:1.3em;
+       box-sizing:border-box;
+       display:block;
+     }
+     .timeprefix{
+       display:inline-block;
+       width:62.4px;
+       height:31.2px;
+     }
+     .list{
+       list-style:none;
+       font-size:22.4px;
+       font-weight:400;
+     }
+     .list-item{
+       width:89.6px;
+       height:33.6px;
+       font-size:22.4px;
+       font-weight:400;
+       text-align:left;
+       min-width: 4em;
+       padding:2.24px;
+       text-align-last:justify;
+       display:inline-block;
+     }
+     .circle{
+       height:230px;
+       animation-duration: 1s;
+       -webkit-animation-name: example; /*关键帧名称*/
+       -webkit-animation-timing-function: linear; /*动画的速度曲线*/
+       -webkit-animation-iteration-count: infinite;  /*动画播放的次数*/
+     }
+     @keyframes example {
+       0%{
+         transform:scale(1);
+       }
+       20%{
+         transform:scale(1.1);
+       }
+       50%{
+         transform:scale(1.25);
+       }
+       75%{
+         transform:scale(1.1);
+       }
+     }
+    </style>
+    <script>
+     Date.prototype.format = function (fmt) {
+       var o = {
+         "y+": this.getFullYear, //年
+         "M+": this.getMonth() + 1, //月份
+         "d+": this.getDate(), //日
+         "h+": this.getHours(), //小时
+         "m+": this.getMinutes(), //分
+         "s+": this.getSeconds() //秒
+       };
+       if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+       for (var k in o)
+         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+       return fmt;
+     }
+     setInterval("document.getElementById('dateTime').innerHTML = (new Date()).format('yyyy-MM-dd hh:mm:ss');", 1000);
+
+     function writeStudent(){
+       let x;
+       const studentID = prompt("请输入你的学号", "");
+       if (studentID!=null && studentID!==""){
+         x=studentID;
+         document.getElementById("studentID").innerHTML=x;
+         let y;
+         const studentName = prompt("请输入你的姓名", "");
+         if (studentName!=null && studentName!==""){
+           y=studentName;
+           document.getElementById("studentName").innerHTML=y;
+           let z;
+           const studentSet = prompt("请输入你的地点", "浑南校区东门");
+           if (studentSet!=null && studentSet!==""){
+             z=studentSet;
+             document.getElementById("studentSet").innerHTML=z;
+           }
+         }
+       }
+     }
+     writeStudent.call();
+    </script>
+  </body>
+</html>
